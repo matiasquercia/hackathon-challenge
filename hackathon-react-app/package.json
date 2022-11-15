@@ -1,0 +1,57 @@
+{
+  "name": "react-firebase-auth",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@coreui/coreui": "^3.4.0",
+    "@coreui/icons": "^2.0.1",
+    "@coreui/icons-react": "^1.1.0",
+    "@coreui/react": "^3.4.6",
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-brands-svg-icons": "^5.15.3",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.14",
+    "@material-ui/core": "^4.11.4",
+    "@material-ui/icons": "^4.11.2",
+    "@react-firebase/auth": "^0.2.10",
+    "axios": "^0.21.1",
+    "chart.js": "^3.3.2",
+    "firebase": "^8.6.3",
+    "font-awesome": "^4.7.0",
+    "materialize-css": "^1.0.0-rc.2",
+    "mui": "^0.0.1",
+    "node-sass": "^6.0.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-materialize": "^3.9.8",
+    "react-redux": "^7.2.4",
+    "react-router": "^5.0.0",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "^1.1.5",
+    "redux": "^4.1.0",
+    "redux-thunk": "^2.3.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "sass": "^1.35.1"
+  }
+}

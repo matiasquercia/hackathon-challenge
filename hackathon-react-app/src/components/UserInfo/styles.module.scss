@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+$color-container:#f5f5f5;
+$color-box: #ffffff;
+$font: 'Open Sans';
+
+body {
+    font-family: $font;
+}
+
+.containerMain {
+    display: flex;
+    flex-direction: column;
+    background-color: $color-container;
+    margin-top: 60px;
+    margin-left: 65px;
+}
+
+.divTop {
+    flex-direction: row;
+    margin-top: 100px;
+    min-height: 87px;
+    margin-left: 90px;
+}
+
+.title {
+    display: inline-block;
+    font-size: 30px;
+    font-family: $font;
+}
+
+.text {
+    font-size: 20px;
+    margin-left: 22px;
+}
+
+.userData {
+    font-size: 15px;
+    font-weight: lighter;
+}
+
+.body {
+    font-size: 15px;
+    margin-left: 22px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+
+
