@@ -1,4 +1,4 @@
-# React Firebase Authentication Example
+# React Hackathon APP
 
 Put your credentials to `.env`.
 
