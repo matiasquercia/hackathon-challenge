@@ -1,16 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Card from "../Card/Card";
-import { makeStyles } from "@material-ui/core/styles";
 import styles from "./styles.module.scss";
 import app from "../../firebase";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    marginLeft: 80,
-    marginRight: 15,
-  },
-}));
 
 const UserInfo = () => {
 

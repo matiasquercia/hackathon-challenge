@@ -3,10 +3,8 @@ import { fade, makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
-import Badge from '@material-ui/core/Badge'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Typography from '@material-ui/core/Typography'
-import IconOlx from '../../assets/icons/olx-logo.svg'
 import app from '../../firebase'
 
 const useStyles = makeStyles((theme) => ({

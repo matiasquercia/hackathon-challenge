@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import Drawer from "@material-ui/core/Drawer";
@@ -6,7 +7,6 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Toolbar from "@material-ui/core/Toolbar";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import CodeIcon from "@material-ui/icons/Code";
 import FaceIcon from "@material-ui/icons/Face";
 import EmojiEventsIcon from "@material-ui/icons/EmojiEvents";
 import HomeIcon from "@material-ui/icons/Home";
@@ -70,13 +70,15 @@ const useStyles = makeStyles((theme) => ({
 
 const SideBar = () => {
   const classes = useStyles();
+  const history = useHistory();
   let pathName = window.location.pathname;
 
   const [clickedIcon, setclickedIcon] = useState(pathName.slice('/'));
 
 
-  const onClickedIcon = (icon) => {
+  const onClickedIcon = (icon, path) => {
     setclickedIcon(icon);
+    history.push(path);
   };
 
   return (
@@ -104,8 +106,8 @@ const SideBar = () => {
               )}
             </Link>
           </ListItem>
-          <ListItem className={classes.listItem}>
-            <Link to="/top-developers" onClick={() => onClickedIcon("top-developers", "/top-developers")}>
+          <ListItem className={classes.listItem} onClick={() => onClickedIcon("top-developers", "/top-developers")}>
+            <Link to="/top-developers">
               {clickedIcon === "top-developers" ? (
                 <EmojiEventsIcon 
                   className={classes.iconSelect}

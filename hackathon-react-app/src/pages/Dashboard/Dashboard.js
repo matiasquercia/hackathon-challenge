@@ -37,108 +37,118 @@ const useStyles = makeStyles((theme) => ({
 
 const Dashboard = () => {
 
-  // const [selectedHackathon, setSelectedHackathon] = useState(null)
-  const hackathons = useSelector((state) => state.hackathons.data) || null;
-  const developments = useSelector((state) => state.developments.data) || null;
   const classes = useStyles();
+  const [selected, setSelected] = useState();
 
   useEffect(() => {
     store.dispatch(_getHackathons());
   }, []);
 
-  let hackathonsData = [
-    {
-      "id" : "030559-9172",
-      "name" : "Sønder Alle",
-      "location" : "Denmark",
-      "createdAt" : "2022-11-14 19:58:25",
-      "updatedAt" : "2022-11-14 19:58:25"
-    },
-    {
-      "id" : "14077507613",
-      "name" : "Victoria terrasse",
-      "location" : "Norway",
-      "createdAt" : "2022-11-15 11:33:17",
-      "updatedAt" : "2022-11-15 11:33:17"
-    },
-    {
-      "id" : "1570455674068 86",
-      "name" : "Rue Victor-Hugo",
-      "location" : "France",
-      "createdAt" : "2022-11-15 11:43:17",
-      "updatedAt" : "2022-11-15 11:43:17"
-    },
-    {
-      "id" : "16556441-F",
-      "name" : "Avenida de América",
-      "location" : "Spain",
-      "createdAt" : "2022-11-15 12:23:19",
-      "updatedAt" : "2022-11-15 12:23:19"
-    },
-    {
-      "id" : "27 96 98 3567 9",
-      "name" : "Peatonal Sánchez",
-      "location" : "Mexico",
-      "createdAt" : "2022-11-15 11:07:32",
-      "updatedAt" : "2022-11-15 11:07:32"
-    },
-    {
-      "id" : "2890505737917 05",
-      "name" : "Rue Barrier",
-      "location" : "France",
-      "createdAt" : "2022-11-15 11:53:17",
-      "updatedAt" : "2022-11-15 11:53:17"
-    },
-    {
-      "id" : "292029053",
-      "name" : "Poplar Dr",
-      "location" : "Australia",
-      "createdAt" : "2022-11-15 11:01:09",
-      "updatedAt" : "2022-11-15 11:01:09"
-    },
-    {
-      "id" : "43882887-C",
-      "name" : "Calle del Pez",
-      "location" : "Spain",
-      "createdAt" : "2022-11-15 12:33:17",
-      "updatedAt" : "2022-11-15 12:33:17"
-    },
-    {
-      "id" : "56 120553 S 563",
-      "name" : "Breslauer Straße",
-      "location" : "Germany",
-      "createdAt" : "2022-11-15 12:03:17",
-      "updatedAt" : "2022-11-15 12:03:17"
-    },
-    {
-      "id" : "66 270855 O 729",
-      "name" : "Am Sportplatz",
-      "location" : "Germany",
-      "createdAt" : "2022-11-15 11:24:30",
-      "updatedAt" : "2022-11-15 11:24:30"
-    },
-    {
-      "id" : "756.1215.8529.27",
-      "name" : "Avenue Debrousse",
-      "location" : "Switzerland",
-      "createdAt" : "2022-11-15 12:13:17",
-      "updatedAt" : "2022-11-15 12:13:17"
-    },
-    {
-      "id" : "989504795",
-      "name" : "Živana Saramandića",
-      "location" : "Serbia",
-      "createdAt" : "2022-11-15 11:13:18",
-      "updatedAt" : "2022-11-15 11:13:18"
-    },
-    {
-      "id" : "XZ 04 16 68 O",
-      "name" : "Kingsway",
-      "location" : "United Kingdom",
-      "createdAt" : "2022-11-14 19:58:53",
-      "updatedAt" : "2022-11-14 19:58:53"
-    }
-  ]
+  useEffect(() => {
+    store.dispatch(_getDevelopments(selected));
+    console.log(selected)
+  }, [selected]);
+
+  const hackathonsReady = useSelector((state) => state.hackathons.ready) || null;
+  const hackathonsData = useSelector((state) => state.hackathons.data) || null;
+
+  const developmentsReady = useSelector((state) => state.developments.ready) || null;
+  const developmentsData = useSelector((state) => state.developments.data) || null;
+
+
+  // let hackathonsData = [
+  //   {
+  //     "id" : "030559-9172",
+  //     "name" : "Sønder Alle",
+  //     "location" : "Denmark",
+  //     "createdAt" : "2022-11-14 19:58:25",
+  //     "updatedAt" : "2022-11-14 19:58:25"
+  //   },
+  //   {
+  //     "id" : "14077507613",
+  //     "name" : "Victoria terrasse",
+  //     "location" : "Norway",
+  //     "createdAt" : "2022-11-15 11:33:17",
+  //     "updatedAt" : "2022-11-15 11:33:17"
+  //   },
+  //   {
+  //     "id" : "1570455674068 86",
+  //     "name" : "Rue Victor-Hugo",
+  //     "location" : "France",
+  //     "createdAt" : "2022-11-15 11:43:17",
+  //     "updatedAt" : "2022-11-15 11:43:17"
+  //   },
+  //   {
+  //     "id" : "16556441-F",
+  //     "name" : "Avenida de América",
+  //     "location" : "Spain",
+  //     "createdAt" : "2022-11-15 12:23:19",
+  //     "updatedAt" : "2022-11-15 12:23:19"
+  //   },
+  //   {
+  //     "id" : "27 96 98 3567 9",
+  //     "name" : "Peatonal Sánchez",
+  //     "location" : "Mexico",
+  //     "createdAt" : "2022-11-15 11:07:32",
+  //     "updatedAt" : "2022-11-15 11:07:32"
+  //   },
+  //   {
+  //     "id" : "2890505737917 05",
+  //     "name" : "Rue Barrier",
+  //     "location" : "France",
+  //     "createdAt" : "2022-11-15 11:53:17",
+  //     "updatedAt" : "2022-11-15 11:53:17"
+  //   },
+  //   {
+  //     "id" : "292029053",
+  //     "name" : "Poplar Dr",
+  //     "location" : "Australia",
+  //     "createdAt" : "2022-11-15 11:01:09",
+  //     "updatedAt" : "2022-11-15 11:01:09"
+  //   },
+  //   {
+  //     "id" : "43882887-C",
+  //     "name" : "Calle del Pez",
+  //     "location" : "Spain",
+  //     "createdAt" : "2022-11-15 12:33:17",
+  //     "updatedAt" : "2022-11-15 12:33:17"
+  //   },
+  //   {
+  //     "id" : "56 120553 S 563",
+  //     "name" : "Breslauer Straße",
+  //     "location" : "Germany",
+  //     "createdAt" : "2022-11-15 12:03:17",
+  //     "updatedAt" : "2022-11-15 12:03:17"
+  //   },
+  //   {
+  //     "id" : "66 270855 O 729",
+  //     "name" : "Am Sportplatz",
+  //     "location" : "Germany",
+  //     "createdAt" : "2022-11-15 11:24:30",
+  //     "updatedAt" : "2022-11-15 11:24:30"
+  //   },
+  //   {
+  //     "id" : "756.1215.8529.27",
+  //     "name" : "Avenue Debrousse",
+  //     "location" : "Switzerland",
+  //     "createdAt" : "2022-11-15 12:13:17",
+  //     "updatedAt" : "2022-11-15 12:13:17"
+  //   },
+  //   {
+  //     "id" : "989504795",
+  //     "name" : "Živana Saramandića",
+  //     "location" : "Serbia",
+  //     "createdAt" : "2022-11-15 11:13:18",
+  //     "updatedAt" : "2022-11-15 11:13:18"
+  //   },
+  //   {
+  //     "id" : "XZ 04 16 68 O",
+  //     "name" : "Kingsway",
+  //     "location" : "United Kingdom",
+  //     "createdAt" : "2022-11-14 19:58:53",
+  //     "updatedAt" : "2022-11-14 19:58:53"
+  //   }
+  // ]
   
   let developersData = [
     {
@@ -742,9 +752,12 @@ const Dashboard = () => {
       "updatedAt" : "2022-11-14 19:58:25"
     }
   ]
+  console.log(hackathonsReady)
   
   // console.log(selectedHackathon);
-  const setHackathon = (id) => store.dispatch(_getDevelopments(id));
+  const setHackathon = (id) => {
+    setSelected(id);
+  }
 
   return (
     <div>
@@ -758,30 +771,34 @@ const Dashboard = () => {
               <Grid item xs={12} sm={6}>
                 <Card title="Hackathons">
                   {
-                    hackathons ?
-                      hackathonsData.map( (hackathon) => 
-                          <HackathonCard
-                            name={hackathon.name}
-                            date={hackathon.date} 
-                            location={hackathon.location}
-                            onClick={() => { setHackathon(hackathon.id); }}
-                          />
+                  hackathonsReady ?
+                    hackathonsData.map( (hackathon) => 
+                          <button onClick={() => setHackathon(hackathon.id)}>
+                            <HackathonCard
+                              name={hackathon.name}
+                              date={hackathon.date} 
+                              location={hackathon.location}
+                              key={hackathon.id}
+                            />
+                          </button>
                       )
-                    : null
+                  :
+                  null
                   }
                 </Card>
               </Grid>
               <Grid item xs={12} sm={6}>
                 <Card title="Best Developments">
                   {
-                    developments ?
-                      developersData.map( (development) => 
+                    developmentsReady ?
+                      developmentsData.map( (development) => 
                         <DevelopmentCard
                           ranking={development.ranking}
                           firstName={development.firstName}
                           lastName={development.lastName}
                           picture={development.picture} 
                           email={development.email}
+                          key={development.id}
                         />
                       )
                     : null

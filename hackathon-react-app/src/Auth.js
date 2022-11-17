@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 import NavBar from "./components/Navbar/Navbar.js";
 import SideBar from "./components/SideBar/SideBar.js";
 import app from "./firebase.js";
@@ -26,14 +27,16 @@ export const AuthProvider = ({ children }) => {
         currentUser,
       }}
     >
-      {currentUser ? (
-        <div>
-          <SideBar />
-          <NavBar />
-        </div>
-      ) : null}
+      <Router>
+        {currentUser ? (
+          <div>
+            <SideBar />
+            <NavBar />
+          </div>
+        ) : null}
 
-      {children}
+        {children}
+      </Router>
     </AuthContext.Provider>
   );
 };

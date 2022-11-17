@@ -1,156 +1,87 @@
 /* eslint-disable consistent-return */
 import { initialPetitionState, pendingPetitionState, readyPetitionState } from '../Store';
-
-const _getHackathons = () => (dispatch) => {
+import axios from 'axios';
+    
+export const _getHackathons = () => async dispatch => {
 
   dispatch({
 		...pendingPetitionState,
 		type: 'HACKATHONS',
-		data: {}
+		data: []
 	});
-
-  async function getHackathons() {
-    try {
-      const response = await fetch('https://127.0.0.1:8000/api/hackathons', {
-        method: 'GET',
-        headers: {
-          accept: 'application/json',
-        },
-      });
-  
-      if (!response.ok) {
-        throw new Error(`Error! status: ${response.status}`);
-      }
-  
-      const result = await response.json();
-      return result;
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  getHackathons().then((data) => {
-      console.log(data)
-      dispatch({
+    
+  try{
+      const res = await axios.get(`http://127.0.0.1:8001/api/hackathons`)
+      dispatch( {
         ...readyPetitionState,
         type: 'HACKATHONS',
-        data: {
-          hackathons: data.results[0]
-        }
-      });
-    })
-    .catch((error) => {
-      dispatch({
-        ...initialPetitionState,
-        type: "HACKATHONS",
-        data: {},
-      });
-      /* podesmos hacer dispatch de otra acción en el caso de error */
-      console.error('Error getting hackathons: ', error);
+        data: res.data.data
+      })
+  }
+  catch(e){
+    dispatch({
+      ...initialPetitionState,
+      type: "HACKATHONS",
+      data: [],
     });
-  
-};
+    console.error('Error getting hackathons: ', e);
+  }
 
-const _getTopDevelopers = () => (dispatch) => {
+}
 
-	dispatch({
+export const _getTopDevelopers = () => async dispatch => {
+
+  dispatch({
 		...pendingPetitionState,
 		type: 'TOPDEVELOPERS',
-		data: {}
+		data: []
 	});
-
-  async function getTopDevelopers() {
-    try {
-      const response = await fetch('https://127.0.0.1:8000/api/topdevelopers', {
-        method: 'GET',
-        headers: {
-          accept: 'application/json',
-        },
-      });
-  
-      if (!response.ok) {
-        throw new Error(`Error! status: ${response.status}`);
-      }
-  
-      const result = await response.json();
-      return result;
-    } catch (err) {
-      console.log(err);
-    }
+  try{
+      const res = axios.get(`http://127.0.0.1:8001/api/topdevelopers`)
+      res.then((response) => 
+        dispatch( {
+          ...readyPetitionState,
+          type: 'TOPDEVELOPERS',
+          data: response.data
+        })
+      )
+  }
+  catch(e){
+    dispatch({
+      ...initialPetitionState,
+      type: "TOPDEVELOPERS",
+      data: [],
+    });
+    console.error('Error getting developers: ', e);
   }
 
-  getTopDevelopers().then((data) => {
-      console.log(data)
-      dispatch({
-        ...readyPetitionState,
-        type: 'TOPDEVELOPERS',
-        data: {
-          hackathons: data.results[0]
-        }
-      });
-    })
-    .catch((error) => {
-      dispatch({
-        ...initialPetitionState,
-        type: "TOPDEVELOPERS",
-        data: {},
-      });
-      /* podesmos hacer dispatch de otra acción en el caso de error */
-      console.error('Error getting hackathons: ', error);
-    });
-  
-};
+}
 
-const _getDevelopments = (hackathon_id) => (dispatch) => {
+export const _getDevelopments = (hackathon_id) => async dispatch => {
 
-	dispatch({
+  dispatch({
 		...pendingPetitionState,
 		type: 'DEVELOPMENTS',
-		data: {}
+		data: []
 	});
-
-  async function getDevelopments() {
-    try {
-      const response = await fetch(`https://127.0.0.1:8000/api/developers/${hackathon_id}`, {
-        method: 'GET',
-        headers: {
-          accept: 'application/json',
-        },
-      });
-  
-      if (!response.ok) {
-        throw new Error(`Error! status: ${response.status}`);
-      }
-  
-      const result = await response.json();
-      return result;
-    } catch (err) {
-      console.log(err);
-    }
+    
+  try{
+      const res = axios.get(`http://127.0.0.1:8001/api/developers/${hackathon_id}`)
+      res.then((response) => 
+        dispatch( {
+          ...readyPetitionState,
+          type: 'DEVELOPMENTS',
+          data: response.data
+        })
+      )
+  }
+  catch(e){
+    dispatch({
+      ...initialPetitionState,
+      type: "DEVELOPMENTS",
+      data: [],
+    });
+    console.error('Error getting developments: ', e);
   }
 
-  getDevelopments().then((data) => {
-      console.log(data)
-      dispatch({
-        ...readyPetitionState,
-        type: 'DEVELOPMENTS',
-        data: {
-          hackathons: data.results[0]
-        }
-      });
-    })
-    .catch((error) => {
-      dispatch({
-        ...initialPetitionState,
-        type: "DEVELOPMENTS",
-        data: {},
-      });
-      console.error('Error getting developments: ', error);
-    });
-  
-};
-export {
-	_getHackathons,
-  _getTopDevelopers,
-  _getDevelopments
-};
+}

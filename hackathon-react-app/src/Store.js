@@ -6,9 +6,9 @@ export const readyPetitionState = { ready: true, pending: false, lastCallTimesta
 export const initialPetitionState = { ready: false, pending: false, lastCallTimestamp: null };
 
 const initialState = {
-    hackathons: { ...initialPetitionState, data: {} },
-    developments: { ...initialPetitionState, data: {} },
-    topDevelopers: { ...initialPetitionState, data: {} },
+    hackathons: { ...initialPetitionState, data: [] },
+    developments: { ...initialPetitionState, data: [] },
+    topDevelopers: { ...initialPetitionState, data: [] },
 };
 
 const reducer = (state, action) => {

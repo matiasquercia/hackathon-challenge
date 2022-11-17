@@ -27,15 +27,29 @@ const HackathonCards = (props) => {
 
   const classes = useStyles();
 
+  const setHackathon = (id) => console.log(id);
+
+  const colorChecked = (_colorChecked) => {
+    const color = [];
+    if (_colorChecked) {
+      color[0] = "#0066E7";
+      color[1] = "#FAFAFA";
+    } else {
+      color[0] = "#7E7E7E";
+      color[1] = "#FFFFFF";
+    }
+    return color;
+  };
+
   return (
-    <div className={classes.divTotal}>
-      <div className={classes.text}> {props.name} </div>
-      <div className={classes.info}> 
-        {props.location} 
-        <br/> 
-        {props.date} 
+      <div className={classes.divTotal}>
+        <div className={classes.text}> {props.name} </div>
+        <div className={classes.info}> 
+          {props.location} 
+          <br/> 
+          {props.date} 
+        </div>
       </div>
-    </div>
   );
 };
 

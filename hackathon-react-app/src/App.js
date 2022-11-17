@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
 import { AuthProvider } from "./Auth";
@@ -12,16 +12,14 @@ import TopDevelopers from "./pages/TopDevelopers/TopDevelopers";
 const App = () => {
   return (
     <AuthProvider>
-      <Router>
         <Switch>
             <PrivateRoute exact path="/" component={Dashboard} />
-            <PrivateRoute exact path="/home" component={Dashboard} />
-            <PrivateRoute exact path="/top-developers" component={TopDevelopers} />
-            <PrivateRoute exact path="/user-info" component={UserInfo} />
+            <PrivateRoute path="/home" exact component={Dashboard} />
+            <PrivateRoute path="/top-developers" exact component={TopDevelopers} />
+            <PrivateRoute path="/user-info" exact component={UserInfo} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={SignUp} />
         </Switch>
-      </Router>
     </AuthProvider>
   );
 };
