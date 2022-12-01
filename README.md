@@ -1,2 +1,1 @@
 # hackathon-challenge
-PSh challenge
